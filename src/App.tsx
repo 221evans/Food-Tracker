@@ -1,6 +1,6 @@
 
 import './App.css'
-import UserPage from "./components/UserPage.tsx";
+import {UserPage} from "./components/UserPage.tsx";
 
 function App() {
 
