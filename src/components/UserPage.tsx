@@ -1,15 +1,15 @@
 import Table from "react-bootstrap/Table"
-import {Button} from "react-bootstrap";
+import {Button, InputGroup} from "react-bootstrap";
 import {useState} from "react";
 
 export function UserPage() {
 
     const [rows, setRows] = useState([
-        {date: "25/02/2026", meal: "Breakfast", comments: "Good", mood: "Happy"},
+        {date: "", meal: "", comments: "", mood: ""},
     ]);
 
     const addRow = () => {
-        const newRow = { date: "25/02/2026", meal: "Breakfast", comments: "Good", mood: "Happy"}
+        const newRow = { date: "", meal: "", comments: "", mood: ""}
         setRows([...rows, newRow]);
     }
 
@@ -27,10 +27,47 @@ export function UserPage() {
                 <tbody>
                 {rows.map((row, index) => (
                     <tr key={index}>
-                        <td>{row.date}</td>
-                        <td>{row.meal}</td>
-                        <td>{row.comments}</td>
-                        <td>{row.mood}</td>
+                        {/*<td>{row.date}</td>*/}
+                        {/*<td>{row.meal}</td>*/}
+                        {/*<td>{row.comments}</td>*/}
+                        {/*<td>{row.mood}</td>*/}
+                        <td>
+                            <InputGroup>
+                                <input type="date" className="form-control" value={row.date} onChange={(e) => {
+                                    const newRows = [...rows];
+                                    newRows[index].date = e.target.value;
+                                    setRows(newRows);
+                                }}/>
+                            </InputGroup>
+                        </td>
+                        <td>
+                            <InputGroup>
+                                <input type="text" className="form-control" value={row.meal} onChange={(e) => {
+                                    const newRows = [...rows];
+                                    newRows[index].meal = e.target.value;
+                                    setRows(newRows);
+                                }}/>
+                            </InputGroup>
+                        </td>
+
+                        <td>
+                            <InputGroup>
+                                <input type="text" className="form-control" value={row.comments} onChange={(e) => {
+                                    const newRows = [...rows];
+                                    newRows[index].comments = e.target.value;
+                                    setRows(newRows);
+                                }}/>
+                            </InputGroup>
+                        </td>
+                        <td>
+                            <InputGroup>
+                                <input type="text" className="form-control" value={row.mood} onChange={(e) => {
+                                    const newRows = [...rows];
+                                    newRows[index].mood = e.target.value;
+                                    setRows(newRows);
+                                }}/>
+                            </InputGroup>
+                        </td>
                     </tr>
                 ))}
                 </tbody>
