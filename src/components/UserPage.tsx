@@ -1,6 +1,7 @@
 import Table from "react-bootstrap/Table"
 import {Button, InputGroup} from "react-bootstrap";
-import {useState} from "react";
+import {useState, useEffect} from "react";
+
 
 
 interface MealRow {
@@ -31,6 +32,25 @@ export function UserPage() {
         );
         setRows(newRows);
     };
+
+    const handleSave = async () => {
+        const response = await fetch("http://localhost:3000/api/meals", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify(rows),
+        })
+        const result = await response.json();
+        console.log(result);
+    }
+
+    useEffect(() => {
+        fetch("http://localhost:3000/api/meals")
+            .then(res => res.json())
+            .then((data: MealRow[]) => setRows(data))
+            .catch(err => console.error("Failed to load meals:", err));
+    }, []);
 
     return (
         <div>
@@ -84,7 +104,7 @@ export function UserPage() {
 
             <div className={"mt-3"}>
                 <Button onClick={addRow}>Add Row</Button>
-                <Button className={"btn-success m-3"}>Save</Button>
+                <Button onClick={handleSave} className={"btn-success m-3"}>Save</Button>
             </div>
 
 
