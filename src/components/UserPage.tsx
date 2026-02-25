@@ -34,7 +34,7 @@ export function UserPage() {
     };
 
     const handleSave = async () => {
-        const response = await fetch("http://localhost:3000/api/meals", {
+        const response = await fetch("food-tracker-backend-production.up.railway.app", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
@@ -46,7 +46,7 @@ export function UserPage() {
     }
 
     useEffect(() => {
-        fetch("http://localhost:3000/api/meals")
+        fetch("food-tracker-backend-production.up.railway.app")
             .then(res => res.json())
             .then((data: MealRow[]) => setRows(data))
             .catch(err => console.error("Failed to load meals:", err));
