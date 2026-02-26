@@ -34,7 +34,7 @@ export function UserPage() {
     };
 
     const handleSave = async () => {
-        const response = await fetch("food-tracker-backend-production.up.railway.app", {
+        const response = await fetch("https://food-tracker-backend-production.up.railway.app/api/meals", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
@@ -46,7 +46,7 @@ export function UserPage() {
     }
 
     useEffect(() => {
-        fetch("food-tracker-backend-production.up.railway.app")
+        fetch("https://food-tracker-backend-production.up.railway.app/api/meals")
             .then(res => res.json())
             .then((data: MealRow[]) => setRows(data))
             .catch(err => console.error("Failed to load meals:", err));
